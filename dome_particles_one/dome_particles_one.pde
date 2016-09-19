@@ -39,6 +39,7 @@ void keyPressed() {
   if(key == 'w'){
     wR = true;
   } else if(key == 'a'){
+    //print('a');
     sP = true; 
   }else{
     systems.add(new ParticleSystem(random(100,200),10,new PVector(random(10,630),10))); //random(480)
