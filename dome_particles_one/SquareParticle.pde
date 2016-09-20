@@ -19,7 +19,7 @@ class SquareParticle extends Particle{
     void display(){
         float theta = map(location.x,0,width,0,TWO_PI*2);
         rectMode(CENTER);
-        fill(0,c1,c2,lifespan);
+        fill(c2,c1,c,lifespan);
         stroke(0,lifespan);
         pushMatrix();
         translate(location.x,location.y);

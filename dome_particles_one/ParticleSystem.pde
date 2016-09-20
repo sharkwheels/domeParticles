@@ -18,22 +18,30 @@ class ParticleSystem {
 			p.applyForce(force);
 		}
 	}
+	void updateColor(float c){
+		for(Particle p : plist){
+			p.updateColor(c);
+		}
+	}
+
 	void run(){		
 		// iterate through array of single particles backwards
 		// remove single particles when they are dead. 
+
+		
 
 		for (int i = plist.size()-1; i > 0; i--){
 			Particle p = plist.get(i);
 			p.run();
 			if (p.isDead()){
 				plist.remove(i);
+
 			}
 		}
 		addParticle();
+		
 		//print(plist.size());
 	}
-
-
 	void addParticle(){
 		//println("AP: "+r);
 		float r = random(1);
