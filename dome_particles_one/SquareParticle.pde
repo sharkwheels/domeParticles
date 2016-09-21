@@ -2,24 +2,30 @@ class SquareParticle extends Particle{
 
     
     float size;
-    float c;
-    float c1;
-    float c2;
+    float r;
+    float g;
+    float b;
     
-    SquareParticle(float col, PVector l){
-        super(col,l);
+    SquareParticle(float color1,float color2, float color3, PVector l){
+        super(color1,color2,color3,l);
         size = random(2,8); 
-        c = col;
-        //print(c);
-        c1 = random(20,100);
-        c2 = random(20, 200);
+        r = color3;
+        //g = color1;
+        //b = color2;
+        g = random(20,100);
+        b = random(100,200);
         
+    }
+    void updateColor(float c1, float c2, float c3){
+        r = c1;
+        
+
     }
 
     void display(){
         float theta = map(location.x,0,width,0,TWO_PI*2);
         rectMode(CENTER);
-        fill(c2,c1,c,lifespan);
+        fill(r,g,b,lifespan);
         stroke(0,lifespan);
         pushMatrix();
         translate(location.x,location.y);
