@@ -13,6 +13,7 @@ class ParticleSystem {
 		c1 = color1;
 		c2 = color2;
 		c3 = color3;
+		println("origin: "+origin);
 
 		for(int i = 0; i < num; i++){
 			plist.add(new Particle(c1,c2,c3,origin)); 

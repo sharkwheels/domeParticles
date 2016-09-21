@@ -1,10 +1,10 @@
 ArrayList<ParticleSystem> systems;
 
 // forces
-PVector windRight = new PVector(0.1,0);
-PVector windLeft = new PVector(-0.1,0);
+PVector windRight = new PVector(0.04,0);
+PVector windLeft = new PVector(-0.04,0);
 PVector gravity = new PVector(0,0.05);
-PVector antiGrav = new PVector(0,-0.05);
+PVector antiGrav = new PVector(0,-0.03);
 
 // booleans for key presses
 boolean wR = false;
@@ -13,7 +13,7 @@ boolean cS = false;
 boolean gS = false;
 
 // limit amount of particle systems
-int limit = 4;
+int limit =4;
 
 // float your colours for the particles
 float cR;
@@ -47,7 +47,7 @@ void setup() {
 
 void draw() {
   noStroke();
-  fill(0,0,0,80);
+  fill(0,0,0,70);
   rect(0, 0, width*2, height*2);
 
   if(!systems.isEmpty()){
@@ -70,9 +70,8 @@ void draw() {
   } 
 
   if(keys[0]&&keys[1]){
-    println("two keys");
+    //println("two keys");
     gS = true;
-
   } else{
     gS = false;
   }
@@ -106,6 +105,13 @@ void keyReleased(){
     
   } // end of cS
 }
+
+/*
+
+origin: [ 489.638, -10.0, 0.0 ]
+origin: [ 199.6925, -10.0, 0.0 ]
+origin: [ 38.856773, -10.0, 0.0 ]
+origin: [ 331.44772, -10.0, 0.0 ]*/
 
 /*
   println("key press - currentPColor: "+currentPColor);
