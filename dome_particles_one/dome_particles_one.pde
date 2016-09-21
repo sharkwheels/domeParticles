@@ -1,13 +1,16 @@
 ArrayList<ParticleSystem> systems;
 
+// forces
 PVector windRight = new PVector(0.1,0);
-PVector sortaSpeed = new PVector(-0.1,0);
+PVector windLeft = new PVector(-0.1,0);
 PVector gravity = new PVector(0,0.05);
+PVector antiGrav = new PVector(0,-0.05);
 
 // booleans for key presses
 boolean wR = false;
 boolean sP = false;
 boolean cS = false;
+boolean gS = false;
 
 // limit amount of particle systems
 int limit = 4;
@@ -17,11 +20,17 @@ float cR;
 float cG;
 float cB;
 
-boolean change = false;
+// keep track of two keys pressed at once. 
+
+boolean[] keys;
 
 void setup() {
 	size(640,480);
 	systems = new ArrayList<ParticleSystem>();
+
+  keys=new boolean[2];
+  keys[0]=false;
+  keys[1]=false;
   
   // set random colours
   cR = 100;
@@ -46,34 +55,47 @@ void draw() {
         ParticleSystem ps = systems.get(i);
         ps.applyForce(gravity);
         ps.run();
+        ps.updateColor(cR,cG,cB);
         if(wR){
           ps.applyForce(windRight);
         }
         if(sP){
-          ps.applyForce(sortaSpeed);
+          ps.applyForce(windLeft);
         }
-        ps.updateColor(cR,cG,cB);
+        if(gS){
+          ps.applyForce(antiGrav);
+        }
         
       }
   } 
+
+  if(keys[0]&&keys[1]){
+    println("two keys");
+    gS = true;
+
+  } else{
+    gS = false;
+  }
 }
 
 void keyPressed() {
 
   if(key == 'w'){
     wR = true;
-    print("w");
+    keys[0]=true;  
   } 
   if(key == 'a'){
-    print('a');
+    keys[1]=true;
     sP = true; 
   }
 }
 
 void keyReleased(){
   if(key == 'w'){
+    keys[0]=false;
     wR = false;
   } else if(key == 'a'){
+    keys[1]=false;
     sP = false;
   } else if(key == 's'){
         cR = random(10,255);
