@@ -3,7 +3,7 @@ ArrayList<ParticleSystem> systems;
 // forces
 PVector windRight = new PVector(0.04,0);
 PVector windLeft = new PVector(-0.04,0);
-PVector gravity = new PVector(0,0.05);
+PVector gravity = new PVector(0,0.04);
 PVector antiGrav = new PVector(0,-0.03);
 
 // booleans for key presses
@@ -13,7 +13,7 @@ boolean cS = false;
 boolean gS = false;
 
 // limit amount of particle systems
-int limit =4;
+int limit =5;
 
 // float your colours for the particles
 float cR;
@@ -23,6 +23,9 @@ float cB;
 // keep track of two keys pressed at once. 
 
 boolean[] keys;
+
+// trails control
+int opacity;
 
 void setup() {
 	size(640,480);
@@ -38,6 +41,8 @@ void setup() {
   cB = 50;
   println("colors: "+cR + " " + cG + " " + cB);
 
+  opacity = 80;
+
   println("setup - cR: "+cR);
   for(int i = 0; i < limit; i++){
     systems.add(new ParticleSystem(cR,cG,cB,10,new PVector(random(width),-10))); //random(480)
@@ -47,7 +52,7 @@ void setup() {
 
 void draw() {
   noStroke();
-  fill(0,0,0,70);
+  fill(0,0,0,opacity);
   rect(0, 0, width*2, height*2);
 
   if(!systems.isEmpty()){
@@ -103,8 +108,12 @@ void keyReleased(){
         println("cR: "+cR);
         println("colors (key released): "+cR + " " + cB + " " + cG);
     
-  } // end of cS
-}
+  }else if(key == 'o'){
+    opacity = 20;
+  } else if(key == 'p'){
+    opacity = 80;
+  }
+  }
 
 /*
 
